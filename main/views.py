@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
-
+from catr.forms import CatrAddProductForm
 
 
 
@@ -23,7 +23,9 @@ def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     related_product = Product.objects.filter(category=product.category,
                                              available=True).exclude(id=product.id)[:4]
+    catr_product_form = CatrAddProductForm()
 
 
     return render(request, 'main/product/detail.html', {'product': product,
-                                                        'related_product': related_product})
+                                                        'related_product': related_product,
+                                                        'catr_product_form':catr_product_form })

@@ -51,9 +51,13 @@
 
             <!-- Кнопка покупки -->
             <div class="mt-4">
-                <button type="button" class="btn btn-primary btn-lg">
+                <form action="{% url "catr:catr_add" product.id %}"method="post">
+                    {{ catr_product_form}}
+                    {% csrf_token %}
+                    <button type="sumbit" class="btn btn-primary btn-lg">
                     Добавить в корзину
                 </button>
+                </form>
             </div>
 
         </div>
